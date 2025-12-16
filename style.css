@@ -1,67 +1,37 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f6f7f9;
-  padding: 30px;
   text-align: center;
-}
-
-h1 {
-  margin-bottom: 5px;
-}
-
-.subtitle {
-  color: #555;
+  padding: 20px;
+  background: #f0f2f5;
 }
 
 #drop-zone {
-  border: 2px dashed #888;
-  padding: 30px;
-  background: #fff;
-  margin: 20px auto;
-  max-width: 500px;
-  cursor: pointer;
-}
-
-#drop-zone:hover {
-  background: #eef3ff;
-}
-
-#fileInput {
-  margin-top: 10px;
-}
-
-#fileList {
-  list-style: none;
-  padding: 0;
-  max-width: 500px;
-  margin: 10px auto;
-  text-align: left;
-}
-
-#fileList li {
-  background: #fff;
-  padding: 8px;
-  margin-bottom: 5px;
-  border-radius: 4px;
-}
-
-button {
-  margin-top: 20px;
-  padding: 12px 25px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.note {
-  margin-top: 20px;
-  font-size: 13px;
-  color: #666;
-}
-#fileList {
-  list-style: none;
-  padding: 0;
-  max-width: 500px;
   margin: 15px auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+  border: 2px dashed #007bff;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #fff;
+  transition: background 0.2s;
+}
+
+#drop-zone p {
+  margin: 0;
+  font-weight: bold;
+  color: #007bff;
+}
+
+#drop-zone.dragover {
+  background: #e0ebff;
+}
+
+#fileList {
+  list-style: none;
+  padding: 0;
+  max-width: 500px;
+  margin: 20px auto;
   text-align: left;
 }
 
@@ -74,6 +44,13 @@ button {
   border: 1px solid #ddd;
 }
 
-#fileList li.dragging {
-  opacity: 0.5;
+#controls button, #pageControl input {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#pageControl {
+  margin-top: 10px;
 }
