@@ -57,3 +57,23 @@ button {
   font-size: 13px;
   color: #666;
 }
+#fileList {
+  list-style: none;
+  padding: 0;
+  max-width: 500px;
+  margin: 15px auto;
+  text-align: left;
+}
+
+#fileList li {
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  cursor: grab;
+  border: 1px solid #ddd;
+}
+
+#fileList li.dragging {
+  opacity: 0.5;
+}
