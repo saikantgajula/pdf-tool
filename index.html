@@ -4,15 +4,19 @@
   <meta charset="UTF-8" />
   <title>Private PDF Tools</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <link rel="stylesheet" href="style.css" />
 
   <!-- pdf-lib -->
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+
+  <!-- SortableJS -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 </head>
 
 <body>
   <h1>Private PDF Tools</h1>
-  <p class="subtitle">All processing happens in your browser. No uploads.</p>
+  <p class="subtitle">All processing happens in your browser.</p>
 
   <div id="drop-zone">
     <p>Drag & drop PDFs or Images here</p>
@@ -21,11 +25,7 @@
 
   <ul id="fileList"></ul>
 
-  <button id="mergeBtn">Merge / Convert & Download</button>
-
-  <p class="note">
-    Files never leave your device.
-  </p>
+  <button id="mergeBtn">Merge & Download</button>
 
   <script src="app.js"></script>
 </body>
