@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Private PDF Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- pdf-lib -->
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+</head>
+
+<body>
+  <h1>Private PDF Tools</h1>
+  <p class="subtitle">All processing happens in your browser. No uploads.</p>
+
+  <div id="drop-zone">
+    <p>Drag & drop PDFs or Images here</p>
+    <input type="file" id="fileInput" multiple />
+  </div>
+
+  <ul id="fileList"></ul>
+
+  <button id="mergeBtn">Merge / Convert & Download</button>
+
+  <p class="note">
+    Files never leave your device.
+  </p>
+
+  <script src="app.js"></script>
+</body>
+</html>
