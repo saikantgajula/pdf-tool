@@ -5,6 +5,7 @@ const dropZone = document.getElementById("drop-zone");
 
 let files = [];
 
+// Drag & drop upload
 dropZone.addEventListener("click", () => fileInput.click());
 
 dropZone.addEventListener("dragover", (e) => {
@@ -33,18 +34,35 @@ function addFiles(selectedFiles) {
   renderList();
 }
 
+// Render file list with numbering
 function renderList() {
   fileList.innerHTML = "";
-  files.forEach((file) => {
+
+  files.forEach((file, index) => {
     const li = document.createElement("li");
-    li.textContent = file.name;
+    li.textContent = `${index + 1}. ${file.name}`;
+    li.dataset.index = index;
     fileList.appendChild(li);
   });
 }
 
+// Enable drag reorder
+new Sortable(fileList, {
+  animation: 150,
+  onEnd: () => {
+    const reordered = [];
+    document.querySelectorAll("#fileList li").forEach((li) => {
+      reordered.push(files[li.dataset.index]);
+    });
+    files = reordered;
+    renderList();
+  }
+});
+
+// Merge respecting order
 mergeBtn.addEventListener("click", async () => {
   if (files.length === 0) {
-    alert("Please add files first.");
+    alert("Please upload files first.");
     return;
   }
 
@@ -56,21 +74,11 @@ mergeBtn.addEventListener("click", async () => {
       const pdf = await PDFLib.PDFDocument.load(bytes);
       const pages = await pdfDoc.copyPages(pdf, pdf.getPageIndices());
       pages.forEach((p) => pdfDoc.addPage(p));
-    } else if (file.type.startsWith("image/")) {
-      const imgBytes = await file.arrayBuffer();
-      let img;
-      if (file.type === "image/jpeg") {
-        img = await pdfDoc.embedJpg(imgBytes);
-      } else {
-        img = await pdfDoc.embedPng(imgBytes);
-      }
-      const page = pdfDoc.addPage([600, 600]);
-      page.drawImage(img, { x: 0, y: 0, width: 600, height: 600 });
     }
   }
 
   const finalPdf = await pdfDoc.save();
-  download(finalPdf, "merged_document.pdf", "application/pdf");
+  download(finalPdf, "merged.pdf", "application/pdf");
 });
 
 function download(data, filename, type) {
