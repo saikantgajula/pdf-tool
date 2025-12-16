@@ -5,35 +5,44 @@
   <title>Private PDF Tools</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
-
-  <!-- pdf-lib for PDF operations -->
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
-
-  <!-- SortableJS for drag-reorder -->
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 </head>
 
 <body>
-  <h1>Private PDF Tools</h1>
-  <p class="subtitle">All processing happens in your browser.</p>
+  <div class="container">
+    <h1>Private PDF Tools</h1>
+    <p class="subtitle">All processing happens locally in your browser. Your files never leave your device.</p>
 
-  <div id="drop-zone">
-    <p>Drag & drop PDFs or images here, or click to upload</p>
-    <input type="file" id="fileInput" multiple />
-  </div>
+    <div id="drop-zone">
+      <div class="drop-icon">📄</div>
+      <p>Drag & drop PDFs here, or click to upload</p>
+      <span class="hint">Supports multiple PDF files</span>
+      <input type="file" id="fileInput" multiple accept=".pdf,application/pdf" />
+    </div>
 
-  <ul id="fileList"></ul>
+    <div id="file-count"></div>
+    <ul id="fileList"></ul>
 
-  <div id="controls">
-    <button id="mergeBtn">Merge & Download</button>
-    <button id="splitBtn">Split PDF</button>
-    <button id="rotateBtn">Rotate Selected Page</button>
-    <button id="removePageBtn">Remove Selected Page</button>
-  </div>
+    <div id="controls">
+      <button id="mergeBtn">Merge & Download</button>
+      <button id="splitBtn">Split PDF</button>
+      <button id="rotateBtn">Rotate Page</button>
+      <button id="removePageBtn">Remove Page</button>
+      <button id="clearBtn" class="secondary">Clear All</button>
+    </div>
 
-  <div id="pageControl">
-    <label for="pageNumber">Page Number:</label>
-    <input type="number" id="pageNumber" min="1" placeholder="Page #">
+    <div id="pageControl">
+      <label for="pageNumber">Page Number:</label>
+      <input type="number" id="pageNumber" min="1" placeholder="e.g. 1">
+    </div>
+
+    <div id="loading" class="hidden">
+      <div class="spinner"></div>
+      <p id="loadingText">Processing...</p>
+    </div>
+
+    <div id="status"></div>
   </div>
 
   <script src="app.js"></script>
