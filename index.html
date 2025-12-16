@@ -4,38 +4,37 @@
   <meta charset="UTF-8" />
   <title>Private PDF Tools</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <link rel="stylesheet" href="style.css" />
 
-  <!-- pdf-lib -->
+  <!-- pdf-lib for PDF operations -->
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
 
-  <!-- SortableJS -->
+  <!-- SortableJS for drag-reorder -->
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 </head>
 
 <body>
   <h1>Private PDF Tools</h1>
-  <p class="subtitle">All processing happens in your browser.Test1.</p>
+  <p class="subtitle">All processing happens in your browser.</p>
 
   <div id="drop-zone">
-    <p>Drag & drop PDFs or Images here</p>
+    <p>Drag & drop PDFs or images here, or click to upload</p>
     <input type="file" id="fileInput" multiple />
   </div>
-  <div id="controls">
-  <button id="mergeBtn">Merge & Download</button>
-  <button id="splitBtn">Split PDF</button>
-  <button id="rotateBtn">Rotate Selected Page</button>
-  </div>
-
-<p>Select a page to rotate or remove after upload:</p>
-<input type="number" id="pageNumber" min="1" placeholder="Page #">
-<button id="removePageBtn">Remove Page</button>
-
 
   <ul id="fileList"></ul>
 
-  <button id="mergeBtn">Merge & Download</button>
+  <div id="controls">
+    <button id="mergeBtn">Merge & Download</button>
+    <button id="splitBtn">Split PDF</button>
+    <button id="rotateBtn">Rotate Selected Page</button>
+    <button id="removePageBtn">Remove Selected Page</button>
+  </div>
+
+  <div id="pageControl">
+    <label for="pageNumber">Page Number:</label>
+    <input type="number" id="pageNumber" min="1" placeholder="Page #">
+  </div>
 
   <script src="app.js"></script>
 </body>
