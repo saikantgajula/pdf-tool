@@ -1,0 +1,59 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f6f7f9;
+  padding: 30px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #555;
+}
+
+#drop-zone {
+  border: 2px dashed #888;
+  padding: 30px;
+  background: #fff;
+  margin: 20px auto;
+  max-width: 500px;
+  cursor: pointer;
+}
+
+#drop-zone:hover {
+  background: #eef3ff;
+}
+
+#fileInput {
+  margin-top: 10px;
+}
+
+#fileList {
+  list-style: none;
+  padding: 0;
+  max-width: 500px;
+  margin: 10px auto;
+  text-align: left;
+}
+
+#fileList li {
+  background: #fff;
+  padding: 8px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.note {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #666;
+}
