@@ -90,3 +90,65 @@ function download(data, filename, type) {
   a.click();
   URL.revokeObjectURL(url);
 }
+// Existing code for drag-drop, files array, renderList, mergeBtn remains
+
+const splitBtn = document.getElementById("splitBtn");
+const rotateBtn = document.getElementById("rotateBtn");
+const removePageBtn = document.getElementById("removePageBtn");
+const pageNumberInput = document.getElementById("pageNumber");
+
+// Split PDF
+splitBtn.addEventListener("click", async () => {
+  if (files.length === 0) return alert("Upload a PDF first");
+  for (let file of files) {
+    if (file.type === "application/pdf") {
+      const pdfBytes = await file.arrayBuffer();
+      const pdf = await PDFLib.PDFDocument.load(pdfBytes);
+      for (let i = 0; i < pdf.getPageCount(); i++) {
+        const newPdf = await PDFLib.PDFDocument.create();
+        const [copiedPage] = await newPdf.copyPages(pdf, [i]);
+        newPdf.addPage(copiedPage);
+        const pdfData = await newPdf.save();
+        download(pdfData, `${file.name.replace(".pdf","")}_page_${i+1}.pdf`, "application/pdf");
+      }
+    }
+  }
+});
+
+// Rotate selected page
+rotateBtn.addEventListener("click", async () => {
+  const pageNum = parseInt(pageNumberInput.value) - 1;
+  if (isNaN(pageNum)) return alert("Enter valid page number");
+  if (files.length === 0) return alert("Upload a PDF first");
+  
+  for (let file of files) {
+    if (file.type === "application/pdf") {
+      const pdfBytes = await file.arrayBuffer();
+      const pdf = await PDFLib.PDFDocument.load(pdfBytes);
+      if (pageNum >= pdf.getPageCount()) return alert("Page number out of range");
+      const page = pdf.getPage(pageNum);
+      page.setRotation((page.getRotation().angle + 90) % 360);
+      const pdfData = await pdf.save();
+      download(pdfData, `${file.name.replace(".pdf","")}_rotated.pdf`, "application/pdf");
+    }
+  }
+});
+
+// Remove selected page
+removePageBtn.addEventListener("click", async () => {
+  const pageNum = parseInt(pageNumberInput.value) - 1;
+  if (isNaN(pageNum)) return alert("Enter valid page number");
+  if (files.length === 0) return alert("Upload a PDF first");
+
+  for (let file of files) {
+    if (file.type === "application/pdf") {
+      const pdfBytes = await file.arrayBuffer();
+      const pdf = await PDFLib.PDFDocument.load(pdfBytes);
+      if (pageNum >= pdf.getPageCount()) return alert("Page number out of range");
+      pdf.removePage(pageNum);
+      const pdfData = await pdf.save();
+      download(pdfData, `${file.name.replace(".pdf","")}_removed.pdf`, "application/pdf");
+    }
+  }
+});
+
